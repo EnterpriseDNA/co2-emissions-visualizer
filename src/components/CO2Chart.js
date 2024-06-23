@@ -12,7 +12,10 @@ const CO2Chart = ({ data }) => {
         label: 'CO2 Emissions (metric tons per capita)',
         data: data.map(d => d.emissions),
         borderColor: 'rgb(75, 192, 192)',
-        tension: 0.1
+        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+        tension: 0.1,
+        pointRadius: 5,
+        pointHoverRadius: 7,
       }
     ]
   };
@@ -26,11 +29,33 @@ const CO2Chart = ({ data }) => {
       title: {
         display: true,
         text: 'Global CO2 Emissions Over Time',
+        font: {
+          size: 18
+        }
       },
     },
+    scales: {
+      y: {
+        beginAtZero: false,
+        title: {
+          display: true,
+          text: 'Emissions (metric tons per capita)'
+        }
+      },
+      x: {
+        title: {
+          display: true,
+          text: 'Year'
+        }
+      }
+    }
   };
 
-  return <Line data={chartData} options={options} />;
+  return (
+    <div style={{ width: '80%', margin: '0 auto' }}>
+      <Line data={chartData} options={options} />
+    </div>
+  );
 };
 
 export default CO2Chart;
